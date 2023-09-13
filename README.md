@@ -25,7 +25,7 @@
 | name               | string     | null:false                             |
 | price              | integer    | null:false                             |
 | description        | text       | null:false                             |
-| item_condition_id  | string     | null:false                             |
+| item_condition_id  | integer    | null:false                             |
 | category_id        | integer    | null:false                             |
 | shipping_fee_id    | integer    | null:false                             |
 | prefecture_id      | integer    | null:false                             |
@@ -54,7 +54,7 @@
 | Column             | Type       | Options                                |
 | ------------------ |----------  |--------------------------------------- |
 | post_code          | string     | null:false                             |
-| prefecture_id      | string     | null:false                             |
+| prefecture_id      | integer    | null:false                             |
 | city               | string     | null:false                             |
 | address            | string     | null:false                             |
 | building           | string     |                                        |
