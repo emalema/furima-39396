@@ -1,24 +1,65 @@
 # README
+# DB設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type       | Options                                |
+| ------------------ |----------  |--------------------------------------- |
+| nickname           | string     | null:false                             |
+| email              | string     | null:false,unique:true                 |
+| encrypted_password | string     | null:false                             |
+| first_name         | string     | null:false                             |
+| last_name          | string     | null:false                             |
+| first_name_kana    | string     | null:false                             |
+| last_name_kana     | string     | null:false                             |
+| date_of_birth      | date       | null:false                             |
 
-* Ruby version
+## Association
+- has_many :items
+- has_many :orders
 
-* System dependencies
+## items table
 
-* Configuration
+| Column             | Type       | Options                                |
+| ------------------ |----------  |--------------------------------------- |
+| name               | string     | null:false                             |
+| price              | integer    | null:false                             |
+| description        | text       | null:false                             |
+| item_condition_id  | integer    | null:false                             |
+| category_id        | integer    | null:false                             |
+| shipping_fee_id    | integer    | null:false                             |
+| prefecture_id      | integer    | null:false                             |
+| shipping_date_id   | integer    | null:false                             |
+| user               | references | null:false ,foreign_key:true           |
 
-* Database creation
+## Association
+- belongs_to :user
+- has_one:order
 
-* Database initialization
+## orders table
 
-* How to run the test suite
+| Column             | Type       | Options                                |
+| ------------------ |----------  |--------------------------------------- |
+| user               | references | null:false,foreign_key:true            |
+| item               | references | null:false,foreign_key:true            |
 
-* Services (job queues, cache servers, search engines, etc.)
+## Association
+- belongs_to :user
+- belongs_to :item
+- has_one :payment
 
-* Deployment instructions
 
-* ...
+## payments table
+
+| Column             | Type       | Options                                |
+| ------------------ |----------  |--------------------------------------- |
+| post_code          | string     | null:false                             |
+| prefecture_id      | integer    | null:false                             |
+| city               | string     | null:false                             |
+| address            | string     | null:false                             |
+| building           | string     |                                        |
+| phone_number       | string     | null:false                             |
+| order              | references | null:false,foreign_key:true            |
+
+## Association
+- belongs_to :order
