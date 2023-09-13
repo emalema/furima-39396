@@ -24,8 +24,8 @@
 | ------------------ |----------  |--------------------------------------- |
 | name               | string     | null:false                             |
 | price              | integer    | null:false                             |
-| item_condition     | string     | null:false                             |
 | description        | text       | null:false                             |
+| item_condition_id  | string     | null:false                             |
 | category_id        | integer    | null:false                             |
 | shipping_fee_id    | integer    | null:false                             |
 | prefecture_id      | integer    | null:false                             |
@@ -40,8 +40,8 @@
 
 | Column             | Type       | Options                                |
 | ------------------ |----------  |--------------------------------------- |
-| order              | references | null:false,foreign_key:true            |
 | user               | references | null:false,foreign_key:true            |
+| item               | references | null:false,foreign_key:true            |
 
 ## Association
 - belongs_to :user
@@ -54,7 +54,7 @@
 | Column             | Type       | Options                                |
 | ------------------ |----------  |--------------------------------------- |
 | post_code          | string     | null:false                             |
-| prefecture         | string     | null:false                             |
+| prefecture_id      | string     | null:false                             |
 | city               | string     | null:false                             |
 | address            | string     | null:false                             |
 | building           | string     |                                        |
