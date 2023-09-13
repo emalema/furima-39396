@@ -5,10 +5,9 @@
 
 | Column             | Type       | Options                                |
 | ------------------ |----------  |--------------------------------------- |
-| nickname           | string     | null:false,unique:true                 |
+| nickname           | string     | null:false                             |
 | email              | string     | null:false,unique:true                 |
 | encrypted_password | string     | null:false                             |
-| introduction       | text       |                                        |
 | first_name         | string     | null:false                             |
 | last_name          | string     | null:false                             |
 | first_name_kana    | string     | null:false                             |
@@ -16,10 +15,8 @@
 | date_of_birth      | date       | null:false                             |
 
 ## Association
-- has_many :item
-- has_many :order
-- has_many :comment
-
+- has_many :items
+- has_many :orders
 
 ## items table
 
@@ -27,28 +24,24 @@
 | ------------------ |----------  |--------------------------------------- |
 | name               | string     | null:false                             |
 | price              | integer    | null:false                             |
-| category           | string     | null:false                             |
-| brand              | string     | null:false                             |
-| color              | string     |                                        |
-| size               | string     |                                        |
-| product_condition  | string     | null:false                             |
-| description        | text       | nill:false                             |
-| shipping_fee       | string     | null:false                             |
-| ship_from          | string     | null:false                             |
-| shipping_date      | date       | null:false                             |
-| user_id            | references | null:false ,foreign_key:true           |
-| item_id            | string     | null:false ,foreign_key:true           |
+| item_condition     | string     | null:false                             |
+| description        | text       | null:false                             |
+| category_id        | integer    | null:false                             |
+| shipping_fee_id    | integer    | null:false                             |
+| prefecture_id      | integer    | null:false                             |
+| shipping_date_id   | integer    | null:false                             |
+| user               | references | null:false ,foreign_key:true           |
 
 ## Association
 - belongs_to :user
-- has_one:oder
+- has_one:order
 
 ## orders table
 
 | Column             | Type       | Options                                |
 | ------------------ |----------  |--------------------------------------- |
-| oder_id            | references | null:false,foreign_key:true            |
-| user_id            | references | null:false,foreign_key:true            |
+| order              | references | null:false,foreign_key:true            |
+| user               | references | null:false,foreign_key:true            |
 
 ## Association
 - belongs_to :user
@@ -60,17 +53,13 @@
 
 | Column             | Type       | Options                                |
 | ------------------ |----------  |--------------------------------------- |
-| first_name         | string     | null:false                             |
-| last_name          | string     | null:false                             |
-| first_name_kana    | string     | null:false                             |
-| last_name_kana     | string     | null:false                             |
 | post_code          | string     | null:false                             |
 | prefecture         | string     | null:false                             |
 | city               | string     | null:false                             |
-| address            | text       | null:false                             |
-| building           | text       |                                        |
+| address            | string     | null:false                             |
+| building           | string     |                                        |
 | phone_number       | string     | null:false                             |
-| oder_id            | references | null:false,foreign_key:true            |
+| order              | references | null:false,foreign_key:true            |
 
 ## Association
-- belongs_to :oder
+- belongs_to :order
