@@ -8,9 +8,8 @@ class User < ApplicationRecord
   KANA_REGEX = /\A[ァ-ヶー]+\z/.freeze # 全角カタカナの正規表現
 
   # Basic Validations
-  validates :nickname, :email, :password, :first_name_kana,
+  validates :nickname, :first_name_kana,
             :last_name_kana, :date_of_birth, presence: true
-  validates :email, uniqueness: true
   validates :password, format: { with: PASSWORD_REGEX, message: 'には半角英字と半角数字の両方を含めて設定してください' }
 
   # Validations with specific conditions
