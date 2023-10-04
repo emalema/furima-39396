@@ -49,7 +49,7 @@ RSpec.describe Item, type: :model do
         @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
-        end
+      end
       it '発送までの日数についての情報が空だと出品できない' do
         @item.shipping_date_id = 1
         @item.valid?
@@ -60,15 +60,15 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      # it '価格は¥300以上でなければ出品できない' do
-      #   @item.price = 299
-      #   @item.valid?
-      #     expect(@item.errors.full_messages).to include("Price must be between ¥300 to ¥9,999,999")
-      # end
+      it '価格は¥300以上でなければ出品できない' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be between ¥300 to ¥9,999,999')
+      end
       it '価格は半角数値でなければ出品できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be a half-width number")
+        expect(@item.errors.full_messages).to include('Price must be a half-width number')
       end
     end
   end
