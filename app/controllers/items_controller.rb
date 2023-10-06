@@ -19,8 +19,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @item = Item.find(item_params[:id])
@@ -32,8 +31,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
 
