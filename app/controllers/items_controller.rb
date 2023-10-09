@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_item, only: %i[edit update show]
 
   def index
@@ -20,10 +20,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless @item.user_id == current_user.id && @item.order.nil?
-        redirect_to root_path
-      end
-    end
+    return if @item.user_id == current_user.id && @item.order.nil?
+
+    redirect_to root_path
+  end
 
   def update
     if @item.user_id == current_user.id && @item.update(item_params)
@@ -33,8 +33,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
 
