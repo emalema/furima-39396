@@ -33,8 +33,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     if @item.user_id == current_user.id && @item.destroy
