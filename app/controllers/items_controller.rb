@@ -20,12 +20,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id != current_user.id
-      redirect_to root_path and return
-    end
-    if @item.order.present?
-      redirect_to root_path and return
-    end
+    redirect_to root_path and return if @item.user_id != current_user.id
+    return unless @item.order.present?
+
+    redirect_to root_path and return
   end
 
   def update
