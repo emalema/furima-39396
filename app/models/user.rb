@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   # Associations
   has_many :items
+  has_many :orders
 
   # Constants
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze

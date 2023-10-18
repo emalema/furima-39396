@@ -2,16 +2,20 @@ require 'rails_helper'
 
 RSpec.describe OrderForm, type: :model do
   before do
-    @order_form = FactoryBot.build(:order_form)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @order_form = FactoryBot.build(:order_form,user_id: @user.id, item_id: @item.id)
+    sleep (0.1)
   end
 
-  describe '配送先情報に問題がない場合' do
-    it '全ての値が正しく入力されていれば保存できること' do
-      @order_form = FactoryBot.build(:order_form)
+    describe '配送先情報の保存' do
+      context '配送先情報に問題がない場合' do
+        it '全ての値が正しく入力されていれば保存できること' do
+      @order_form = FactoryBot.build(:order_form,user_id: @user.id, item_id: @item.id)
       expect(@order_form).to be_valid
     end
 
-    it 'buildingは空でも保存できること' do
+        it 'buildingは空でも保存できること' do
       @order_form.building = nil
       expect(@order_form).to be_valid
     end
@@ -20,8 +24,9 @@ RSpec.describe OrderForm, type: :model do
       @order_form.phone_number = '0901234567'
       expect(@order_form).to be_valid
     end
+  end
 
-    describe '配送先情報に問題がある場合' do
+    context '配送先情報に問題がある場合' do
       it 'userが紐付いていないと保存できないこと' do
         @order_form.user_id = nil
         @order_form.valid?
